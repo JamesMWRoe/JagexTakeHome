@@ -1,0 +1,12 @@
+li
+{
+  border: solid 1px transparent;
+  padding: 0.2em;
+}
+
+li:hover
+{
+  cursor: pointer;
+  border: solid 1px #eee;
+  border-radius: 12px;
+}

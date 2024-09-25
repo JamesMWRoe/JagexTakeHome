@@ -1,0 +1,25 @@
+#root {
+  padding: 0;
+  margin: 0;
+}
+
+.newGame
+{
+  margin: 0 40%;
+  display: block;
+}
+
+
+blockquote {
+  background-color: aquamarine;
+  font-weight: 600;
+}
+
+.title
+{
+  text-align: center;
+  border-bottom: solid 2px #eee;
+  padding: 0.5em 0;
+  margin: 0;
+}
+

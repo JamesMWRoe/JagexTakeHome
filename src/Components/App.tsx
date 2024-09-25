@@ -1,4 +1,4 @@
-import "./App.css";
+import '../Styles/App.css';
 import NewGame from "./NewGame";
 import Game from "./Game";
 import { TokenContextProvider } from "../Context/TokenContext";
@@ -17,10 +17,10 @@ function App()
     
     if (!agent)
     {  return (
-      <>
+      <div className='newGame'>
         <NewGame setAgent={setAgent} />
         <LoadGame setAgent={setAgent} />
-      </>
+      </div>
       
     )  }
     
@@ -34,8 +34,8 @@ function App()
   
   return (
     <>
+    <h1 className="title">Space Trader</h1>
     <TokenContextProvider>
-        <h1>STQS</h1>
         {HandleGamePage()}
     </TokenContextProvider>
     </>

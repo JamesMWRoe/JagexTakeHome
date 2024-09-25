@@ -17,7 +17,6 @@ export default function LoadGame(props: LoadGameProps)
 
   const  HandleLogin = async () => 
   {
-    console.log(loginToken)
     const resp = await SpaceTradeGet('/my/agent', loginToken);
 
     const json = await resp.json();

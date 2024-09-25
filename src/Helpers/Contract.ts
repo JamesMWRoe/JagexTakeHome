@@ -6,15 +6,15 @@ interface Contract
     terms: ContractTerms;
     accepted: boolean;
     fulfilled: boolean;
-    expiration: Date;
-    deadlineToAccept: Date;
+    expiration: string;
+    deadlineToAccept: string;
 }
 
 interface ContractTerms
 {
-    deadline: Date;
+    deadline: string;
     payment: ContractPayment
-    deliver: ContractDeliverGoods
+    deliver: Array<ContractDeliverGoods>
 }
 
 interface ContractPayment

@@ -1,0 +1,46 @@
+.contract
+{
+  width: 80%;
+  padding: 0;
+  border: solid 1px #eee;
+  
+}
+
+.contractTitle
+{
+  width: auto;
+  padding: 1em;
+  border-bottom: solid 1px #eee;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.contractTerms
+{
+  padding: 1em;
+  border-bottom: solid 1px #eee ;
+}
+
+.contractPayment
+{
+  padding: 1em;
+  border-bottom: solid 1px #eee;
+}
+
+.extraInfo
+{
+  padding: 1em;
+}
+
+h3
+{
+  margin: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+p
+{
+  margin: 0.2em;
+}

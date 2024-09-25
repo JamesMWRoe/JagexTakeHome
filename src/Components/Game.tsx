@@ -1,25 +1,38 @@
-import { useAgentContext } from "../Context/AgentContext";
-import StarMap from "./StarMap";
+import { useState } from 'react';
+import '../Styles/Game.css';
+import NavBar from "./NavBar";
+import StarMap from "./StarMapPage";
+import ProfilePage from './ProfilePage';
+import ContractsPage from './ContractsPage';
+import GamePageContextProvider, { Page } from '../Context/GamePageContext';
+import ContractContextProvider from '../Context/ContractContext';
 
 function Game()
 {
-  const {agent} = useAgentContext();
+  const [page, setPage] = useState<Page>("Profile");
+
+  const LoadPage = () =>
+  {
+    switch (page)
+    {
+      case "Profile":
+        return <ProfilePage />
+      case "StarMap":
+        return <StarMap />
+      case "Contracts":
+        return <ContractsPage />
+    }
+  }
 
     return (
-    <div className="mainGame">
-      <nav>
-        <ul id="navLinks">
-          <li>StarMap</li>
-          <li>Contracts</li>
-          <li>Profile</li>
-        </ul>
-      </nav>
-      <h1>Welcome {agent.symbol}</h1>
-      <p>Credits: {agent.credits}</p>
-      <p>Ship Count: {agent.shipCount}</p>
-
-      <StarMap />
-    </div> 
+    <GamePageContextProvider page={page} setPage={setPage}>
+    <ContractContextProvider>
+      <div className="mainGame">
+        <NavBar />
+        {LoadPage()}
+      </div> 
+    </ContractContextProvider>
+    </GamePageContextProvider>
     );
 }
 

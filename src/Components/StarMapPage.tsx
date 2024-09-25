@@ -12,7 +12,7 @@ export default function StarMap()
   const [searchTrait, setSearchTrait] = useState('');
   const [waypoints, setWaypoints] = useState<Array<Waypoint>>([]);
   
-  const renderShipyards = () =>
+  const renderWaypoints = () =>
   {
     if (!waypoints)
     { return; }
@@ -20,14 +20,14 @@ export default function StarMap()
     return (
       <ul>
         {waypoints.map(waypoint => (
-          <li key={waypoint.symbol}>Waypoint: {waypoint.symbol} | Type: {waypoint.type}</li>
+          <li key={waypoint.symbol} onClick={}>Waypoint: {waypoint.symbol} | Type: {waypoint.type}</li>
         ))}
       </ul>
     )
   }
 
-  return (<>
-    <h2>StarMap</h2>
+  return (<div className="starMap">
+    <h1>StarMap</h1>
     <form>
       <span>Search System: </span>
       <label htmlFor="traits">Select a trait to search for: </label>
@@ -37,9 +37,9 @@ export default function StarMap()
       </select>
       <button onClick={HandleSearch}>Search</button>
     </form>
-    {renderShipyards()}
+    {renderWaypoints()}
 
-  </>)
+  </div>)
 
   async function HandleSearch(e: MouseEvent)
   {
