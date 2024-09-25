@@ -12,7 +12,7 @@ type GamePageContextProps = {
   setPage: React.Dispatch<React.SetStateAction<Page>>;
 }
 
-export type Page = "Profile" | "StarMap" | "Contracts"
+export type Page = "Profile" | "StarMap" | "Contracts" | "Shipyard"
 
 const GamePageContext = createContext<GamePageContext | null>(null);
 

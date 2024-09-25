@@ -1,6 +1,7 @@
 interface Waypoint
 {
   symbol: string;
+  systemSymbol: string;
   type: string;
   traits: Array<Traits>;
 }

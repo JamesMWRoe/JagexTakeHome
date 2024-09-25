@@ -3,11 +3,14 @@ import { useAgentContext } from "../Context/AgentContext";
 import { useTokenContext } from "../Context/TokenContext";
 import Waypoint from "../Helpers/Waypoint";
 import { BASE_URL } from "../Helpers/Constants";
+import WaypointDisplay from "./WaypointDisplay";
 
 export default function StarMap()
 {
   const {agentToken} = useTokenContext();
   const {agent} = useAgentContext();
+  
+
 
   const [searchTrait, setSearchTrait] = useState('');
   const [waypoints, setWaypoints] = useState<Array<Waypoint>>([]);
@@ -19,9 +22,7 @@ export default function StarMap()
     
     return (
       <ul>
-        {waypoints.map(waypoint => (
-          <li key={waypoint.symbol} onClick={}>Waypoint: {waypoint.symbol} | Type: {waypoint.type}</li>
-        ))}
+        {waypoints.map(waypoint => (<WaypointDisplay waypoint={waypoint} />))}
       </ul>
     )
   }
@@ -59,8 +60,9 @@ export default function StarMap()
 
     if (resp.ok)
     {
-      const waypointArray = json.data.map((waypoint: { symbol: never; type: never; traits: never; }) => ({
+      const waypointArray = json.data.map((waypoint: { symbol: never; systemSymbol: never; type: never; traits: never; }) => ({
         symbol: waypoint.symbol,
+        systemSymbol: waypoint.systemSymbol,
         type: waypoint.type,
         traits: waypoint.traits
       }));
