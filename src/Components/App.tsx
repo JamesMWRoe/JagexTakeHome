@@ -1,26 +1,43 @@
 import "./App.css";
 import NewGame from "./NewGame";
+import Game from "./Game";
+import { TokenContextProvider } from "../Context/TokenContext";
+import AgentContextProvider from "../Context/AgentContext";
 import { useState } from "react";
 import Agent from "../Helpers/Agent";
-import Game from "./Game";
+import LoadGame from "./LoadGame";
 
 function App() 
 {
-  const [agentToken, setAgentToken] = useState('');
-  const [agent, setAgent] = useState<Agent | undefined>(undefined)
+  const [agent, setAgent] = useState<Agent | undefined>(undefined);
 
-  function HandleGamePage()
+  const HandleGamePage = () =>
   {
-    if (!agent)
-    {  return <NewGame agentToken={agentToken} setAgentToken={setAgentToken} setAgent={setAgent} />  }
+    console.log(`Agent: ${agent}`);
     
-    return <Game agentToken={agentToken} agent={agent} setAgent={setAgent} />
+    if (!agent)
+    {  return (
+      <>
+        <NewGame setAgent={setAgent} />
+        <LoadGame setAgent={setAgent} />
+      </>
+      
+    )  }
+    
+    return (
+      <AgentContextProvider agent={agent} setAgent={setAgent}>
+        <Game/>
+      </AgentContextProvider>
+    );
+
   }
   
   return (
     <>
-      <h1>STQS</h1>
-      {HandleGamePage()}
+    <TokenContextProvider>
+        <h1>STQS</h1>
+        {HandleGamePage()}
+    </TokenContextProvider>
     </>
   );
 }

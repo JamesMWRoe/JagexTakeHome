@@ -1,20 +1,20 @@
 import { useState } from "react"
 import Agent from "../Helpers/Agent";
+import { useTokenContext } from "../Context/TokenContext";
 
 /**
  * This component is a basic MVP of part one of the quickstart. It handles registering your agent and receives a token
  * which you will need to use in subsequent calls. Therefore, you might want to refactor or replace this as you move forward.
  */
 
-interface NewGame
+interface NewGameProps
 {
-  agentToken: string;
-  setAgentToken: React.Dispatch<React.SetStateAction<string>>;
   setAgent: React.Dispatch<React.SetStateAction<Agent | undefined>>;
 }
 
-function NewGame(newGameProps: NewGame)
+function NewGame(props: NewGameProps)
 {
+  const { agentToken, setAgentToken } = useTokenContext();
   const [resp, setResp] = useState("");
   const [form, setForm] = useState({ symbol: "", faction: "COSMIC" });
 
@@ -23,7 +23,7 @@ function NewGame(newGameProps: NewGame)
     <input name="symbol" value={form.symbol} onChange={(e) => setForm({ ...form, symbol: e.currentTarget.value })} />
     <input name="faction" value={form.faction} onChange={(e) => setForm({ ...form, faction: e.currentTarget.value })} />
     <input type="submit" onClick={HandleSubmit} />
-    <pre>API token: {newGameProps.agentToken}</pre>
+    <pre>API token: {agentToken}</pre>
     <pre>Response: {resp}</pre>
   </>)
 
@@ -44,11 +44,13 @@ function NewGame(newGameProps: NewGame)
 
     if (resp.ok) 
     {
-      newGameProps.setAgentToken(json.data.token);
-      newGameProps.setAgent(json.data.agent);
+      setAgentToken(json.data.token);
+      props.setAgent(json.data.agent);
+
+      console.log(`Token: ${json.data.token}`);
     }
 
-    setResp(JSON.stringify(json, null, 2))
+    setResp(JSON.stringify(json, null, 2));
   }
 }
 

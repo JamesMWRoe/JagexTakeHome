@@ -1,19 +1,26 @@
-import Agent from "../Helpers/Agent";
+import { useAgentContext } from "../Context/AgentContext";
+import StarMap from "./StarMap";
 
-interface MainGameProps
+function Game()
 {
-  agentToken: string;
-  agent: Agent;
-  setAgent: React.Dispatch<React.SetStateAction<Agent | undefined>>;
-}
+  const {agent} = useAgentContext();
 
-function Game(props: MainGameProps)
-{
-    return ( <div className="mainGame">
-      <h1>Welcome {props.agent.symbol}</h1>
-      <p>Credits: {props.agent.credits}</p>
-      <p>Ship Count: {props.agent.shipCount}</p>
-    </div> )
+    return (
+    <div className="mainGame">
+      <nav>
+        <ul id="navLinks">
+          <li>StarMap</li>
+          <li>Contracts</li>
+          <li>Profile</li>
+        </ul>
+      </nav>
+      <h1>Welcome {agent.symbol}</h1>
+      <p>Credits: {agent.credits}</p>
+      <p>Ship Count: {agent.shipCount}</p>
+
+      <StarMap />
+    </div> 
+    );
 }
 
 export default Game
